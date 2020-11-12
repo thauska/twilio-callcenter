@@ -1,10 +1,25 @@
-require('dotenv/config')
+require('dotenv/config');
+const twilio = require('twilio');
 
-const phoneNumber = process.env.PHONE_NUMBER;
-const phoneNumberSid = process.env.PHONE_NUMBER_SID;
-const tokenSid = process.env.API_SID;
-const tokenSecret = process.env.API_SECRET;
-const accountSid = process.env.ACCOUNT_SID;
-const verify = process.env.VERIFY_SERVICE_ID;
+class Twilio {
+    phoneNumber = process.env.PHONE_NUMBER;
+    phoneNumberSid = process.env.PHONE_NUMBER_SID;
+    tokenSid = process.env.API_SID;
+    tokenSecret = process.env.API_SECRET;
+    accountSid = process.env.ACCOUNT_SID;
+    verify = process.env.VERIFY_SERVICE_ID;
+    client;
 
-console.log(phoneNumber, phoneNumberSid, tokenSid, tokenSecret, accountSid, verify )
+    constructor() {
+        this.client = twilio(this.tokenSid, this.tokenSecret, { accountSid: this.accountSid });
+    }
+
+    getTwilio() {
+        this.client;
+    }
+}
+
+const instance = new Twilio();
+Object.freeze(instance);
+
+module.exports = instance;

@@ -1,6 +1,9 @@
 require('dotenv/config')
 const express = require('express');
+const twilio = require('./Twilio');
+
 const app = express();
+const client = twilio.client;
 const PORT = 3001;
 
 app.get('/test', (req, res) => {
@@ -14,8 +17,6 @@ app.get('/login', (req, res) => {
 app.get('/verify', (req, res) => {
     console.log('Verifing code ')
 });
-
-console.log(process.env.MOBILE_PHONE_NUMBER)
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT: ${PORT}`)
