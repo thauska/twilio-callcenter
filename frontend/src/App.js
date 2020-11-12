@@ -6,7 +6,8 @@ import axios from './utils/Axios';
 function App() {
   const [user, setUser] = useImmer({
     username: '',
-    mobileNumber: ''
+    mobileNumber: '',
+    channel: 'sms'
   })
 
   async function sendSmsCode() {
