@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 
-function Login({ user:{username, mobileNumber}, setUser }) {
+function Login({ user:{username, mobileNumber}, setUser, sendSmsCode }) {
     function populateFilds(event, data) {
         setUser(draft => {
             draft[data.name] = data.value
@@ -32,7 +32,9 @@ function Login({ user:{username, mobileNumber}, setUser }) {
                             onChange={(event, data) => populateFilds(event, data)}
                             name='mobileNumber'
                         />
-                        <Button color='teal' fluid>Login / Signup</Button>
+                        <Button color='teal' fluid onClick={sendSmsCode}>
+                            Login / Signup
+                        </Button>
                     </Segment>
                 </Form>
             </Grid.Column>
