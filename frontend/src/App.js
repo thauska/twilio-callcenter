@@ -7,14 +7,14 @@ function App() {
   const [user, setUser] = useImmer({
     username: '',
     mobileNumber: '',
-    channel: 'sms'
   })
 
   async function sendSmsCode() {
     console.log('Sending SMS');
     await axios.post('/login', {
       to: user.mobileNumber,
-      username: user.username
+      username: user.username,
+      channel: 'sms'
     });
   }
 

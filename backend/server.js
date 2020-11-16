@@ -7,15 +7,15 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-const PORT = 3001;
 
+const PORT = 3001;
 app.get('/test', (req, res) => {
     res.send('Welcome to Twilio!!!')
 });
 
 app.post('/login', async (req, res) => {
     console.log('loging in ');
-    const {to, username, channel} = req.body;
+    const {to, username, channel } = req.body;
     const data = await twilio.sendVerifyAsync(to, channel);
     res.send(data);
 });
