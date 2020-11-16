@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 
-function Login({ user:{username, mobileNumber}, setUser, sendSmsCode }) {
+function Login({ user: { username, mobileNumber, verificationCode, verificationSend }, setUser, sendSmsCode }) {
     function populateFilds(event, data) {
         setUser(draft => {
             draft[data.name] = data.value
@@ -18,7 +18,7 @@ function Login({ user:{username, mobileNumber}, setUser, sendSmsCode }) {
                             fluid
                             icon='user'
                             iconPosition='left'
-                            placeHolder='UserName'
+                            placeholder='UserName'
                             value={username}
                             onChange={(event, data) => populateFilds(event, data)}
                             name='username'
@@ -27,11 +27,22 @@ function Login({ user:{username, mobileNumber}, setUser, sendSmsCode }) {
                             fluid
                             icon='mobile alternate'
                             iconPosition='left'
-                            placeHolder='Mobile number'
+                            placeholder='Mobile number'
                             value={mobileNumber}
                             onChange={(event, data) => populateFilds(event, data)}
                             name='mobileNumber'
                         />
+                        { verificationSend && (
+                            <Form.Input
+                                fluid
+                                icon='key'
+                                iconPosition='left'
+                                placeholder='Enter your code'
+                                value={verificationCode}
+                                onChange={(event, data) => populateFilds(event, data)}
+                                name='verificationCode'
+                            />
+                        )}
                         <Button color='teal' fluid onClick={sendSmsCode}>
                             Login / Signup
                         </Button>
